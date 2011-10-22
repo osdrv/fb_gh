@@ -9,6 +9,7 @@ gem "jquery-rails", "~> 1.0.16"
 gem "mongoid", "~> 2.3.2"
 gem "bson_ext", "~> 1.4.1"
 
+gem "http_accept_language"
 gem "devise", "~> 1.4.9"
 gem "omniauth", "~> 1.0.0.beta1"
 gem "octopi", "~> 0.4.5"
