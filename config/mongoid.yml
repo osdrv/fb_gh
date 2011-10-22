@@ -1,0 +1,11 @@
+development:
+  host: localhost
+  database: fb_gh_development
+
+test:
+  host: localhost
+  database: fb_gh_test
+
+production:
+  host: localhost
+  database: fb_gh
