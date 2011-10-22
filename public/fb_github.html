@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    
+    <title>FB ♡ GitHub</title>
+    
+    <script src="http://code.jquery.com/jquery-1.6.4.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js" type="text/javascript" charset="utf-8"></script>
+    
+    <style type="text/css" media="screen">
+      body { font-family: monaco;}
+      #holder { overflow-x: auto; width: 100%; height: 580px;}
+      #templates { width: 3900px; height: 520px; overflow-y: hidden;}
+      #templates ul { margin-left: 0;}
+      #templates ul li { list-style-type: none; float: left; padding-left: 0;}
+      
+      #collaborators{ padding-left: 0; }
+      .github_user { list-style-type: none; padding-left: 0; height: 50px; width: 150px; padding: 5px; border: 1px solid blue; background-color: #bdf5bd; border-radius: 5px; float: left;}
+      .userpic { width: 50px; height: 50px; float: left; }
+      .userpic img { max-width: 50px; max-height: 50px; border: 0 none; padding: 0; margin: 0; }
+      .username { height: 50px; text-align: center; vertical-align: middle; }
+      
+      #commits { padding-left: 0; }
+      .commit { list-style-type: none; margin-left: 0; border: 1px solid #000; padding: 5px; border-radius: 5px; background-color: #F0F0F0; margin-bottom: 10px; }
+      .author { width: 150px; float: left;}
+      
+      #issues { padding-left: 0; }
+      .issue { list-style-type: none; border: 1px solid #F00; background-color: #FFF5F0; padding: 5px; border-radius: 5px; margin-bottom: 10px; }
+      .clear-both{ clear: both; }
+    </style>
+    <script type="text/javascript" charset="utf-8">
+      function render_commits(data) {
+        console.log(data)
+        var d = data.data
+        $.each(d, function(i, el) {
+          el.http_url = el.url.replace(/api\./, "").replace(/\/repos\//, "/").replace(/\/commits\//, "/commit/")
+        })
+        $("#CommitTemplate").tmpl(d).appendTo("#commits")
+      }
+      function render_issues(data) {
+        console.log(data)
+        $("#IssueTemplate").tmpl(data.data).appendTo("#issues")
+      }
+      function render_collaborators(data) {
+        var d = data.data
+        $.each(d, function(i, el) {
+          el.http_url = el.url.replace(/api\./, "").replace(/\/users\//, "/")
+        })
+        console.log(d)
+        $("#CollaboratorTemplate").tmpl(d).appendTo("#collaborators")
+      }
+    </script>
+  </head>
+  <body>
+    
+    <script id="CollaboratorTemplate" type="text/x-jquery-tmpl">
+      <li class="github_user">
+        <a href="${http_url}">
+          {{if avatar_url}}
+            <div class="userpic"><img src="${avatar_url}" alt="${login}" /></div>
+          {{/if}}
+          <div class="username">
+            ${login}
+          </div>
+        </a>
+      </li>
+    </script>
+    
+    <script id="CommitTemplate" type="text/x-jquery-tmpl">
+      <li class="commit">
+        <a href="${http_url}">
+          <div class="author">
+            {{if committer.avatar_url}}
+              <div class="userpic"><img src="${committer.avatar_url}" /></div>
+            {{/if}}
+            <div class="username">${committer.login}</div>
+          </div>
+          <div class="sha">${sha}</div>
+          <div class="commit_message">${commit.message}</div>
+          <div class="clear-both"></div>
+        </a>
+      </li>
+    </script>
+    
+    <script id="IssueTemplate" type="text/x-jquery-tmpl">
+      <li class="issue">
+        <div class="author">
+          {{if user.avatar_url}}
+            <div class="userpic"><img src="${user.avatar_url}" /></div>
+          {{/if}}
+          <div class="username">${user.login}</div>
+        </div>
+        <a href="${html_url}">
+          <div class="issue_message">${created_at}: ${title}</div>
+        </a>
+        <div class="assignee">
+          {{if assignee}}
+            <div class="author">
+              <div class="username">→ ${assignee.login}</div>
+            </div>
+          {{else}}
+            → nobody
+          {{/if}}
+        </div>
+        <div class="clear-both"></div>
+      </li>
+    </script>
+    
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {return;}
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/ru_RU/all.js#xfbml=1&appId=259858874049448";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+    <h1>Facebook <span style="color:red;">♡</span> GitHub</h1>
+    <p>
+      Идея для проекта: Создание приложения для организации код-митапов / хакатонов
+    </p>
+    <br/>
+    
+    <h4>Колабораторы:</h4>
+    <div>
+      <ul id="collaborators"></ul>
+    </div>
+    <div class="clear-both"></div>
+    <br/>
+    
+    <h4>Идея:</h4>
+    <p>
+      В Гитхабе создается репозитарий, на FB публикуется релиз митапа: 
+      <ul>
+        <li>тип события(очное/удаленное)</li>
+        <li>описание события: что разрабатываем, в течение какого времени</li>
+        <li>требования к участникам</li>
+        <li>минимальное количество участников</li>
+        <li>назначение ролей участникам: можно назначить набор ролей, люди могут претендовать на одну или несколько ролей. Если все роли разобраны — митап можно проводить</li>
+        <li>назначение областей разработки(для поиска людей)</li>
+      </ul>
+      Можно зайти на страницу события и посмотреть список предстоящих хакатлонов.
+      <br/>
+      Можно подписаться на темы для разработки и тебе в FB будут приходить нотисы обо всех новых хакатонах, включающих выбранные темы.
+      <br/>
+      Соответственно, получается, можно сделать единое место для поиска людей в комьюнити без чтения бесконечных мейл-листов.
+      <br/>
+      Тема должна быть полезной для новичков, кто хочет присоединиться к опенсорс-комьюнити. Также для обычных людей, кому не хватает временных ресурсов на реализацию проекта, кто хочет найти единомышленников для создания проекта.
+      <br/>
+      Все проекты некоммерческие, все находятся под MIT/GPL лицензией, все должны быть размещены на гитхаб.
+    </p>
+    
+    <br/>
+    <h4>Последние коммиты:</h4>
+    <div>
+      <ul id="commits"></ul>
+    </div>
+    <br/>
+    
+    <h4>Открытые таски:</h4>
+    <div>
+      <ul id="issues"></ul>
+    </div>
+    
+    <br/>
+    
+    <h4>Скетч-шаблоны:</h4>
+    <div id="holder">
+      <div id="templates">
+        <ul>
+          <li><a href="https://github.com/4pcbr/fb_gh/issues/1"><img src="http://i.4pcbr.com/i/94/1rhFb2.png" /></a></li>
+          <li><a href="https://github.com/4pcbr/fb_gh/issues/2"><img src="http://i.4pcbr.com/i/d9/1rhFbL.png" /></a></li>
+          <li><a href="https://github.com/4pcbr/fb_gh/issues/3"><img src="http://i.4pcbr.com/i/f8/1rhFcy.png" /></a></li>
+          <li><a href="https://github.com/4pcbr/fb_gh/issues/4"><img src="http://i.4pcbr.com/i/b6/1rhFd3.png" /></a></li>
+          <li><a href="https://github.com/4pcbr/fb_gh/issues/4"><img src="http://i.4pcbr.com/i/19/1rhFHT.png" /></a></li>
+          <li><a href="https://github.com/4pcbr/fb_gh/issues/5"><img src="http://i.4pcbr.com/i/18/1rhFds.png" /></a></li>
+          <li><a href="https://github.com/4pcbr/fb_gh/issues/5"><img src="http://i.4pcbr.com/i/81/1rhFdP.png" /></a></li>
+        </ul>
+      </div>
+    </div>
+
+
+    <br/>
+    <div>
+      <h4>Контакты:</h4>
+      <a href="mailto:i4pcbr@gmail.com">i4pcbr@gmail.com</a>
+      <br/>
+      <a href="skype://o.s.sidorov">skype: o.s.sidorov</a>
+    </div>
+    
+    <br/>
+    <div class="fb-comments" data-href="http://4pcbr.com/fb_github.html" data-num-posts="1000" data-width="1000"></div>
+    <!-- Yandex.Metrika counter -->
+    <div style="display:none;"><script type="text/javascript">
+    (function(w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter1461889 = new Ya.Metrika({id:1461889,
+                        clickmap:true,
+                        trackLinks:true});
+            }
+            catch(e) { }
+        });
+    })(window, "yandex_metrika_callbacks");
+    </script></div>
+    <script src="//mc.yandex.ru/metrika/watch.js" type="text/javascript" defer="defer"></script>
+    <noscript><div><img src="//mc.yandex.ru/watch/1461889" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+    <script src="https://api.github.com/repos/4pcbr/fb_gh/commits?callback=render_commits" type="text/javascript" charset="utf-8"></script>
+    <script src="https://api.github.com/repos/4pcbr/fb_gh/issues?callback=render_issues" type="text/javascript" charset="utf-8"></script>
+    <script src="https://api.github.com/repos/4pcbr/fb_gh/collaborators?callback=render_collaborators" type="text/javascript" charset="utf-8"></script>
+  </body>
+</html>
