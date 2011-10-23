@@ -2,7 +2,11 @@ class User
   include Mongoid::Document
   include Mongoid::Timestamps
   
+  field :user_info, :type => Hash
+  field :user_hash, :type => Hash
+  
   has_many :authentications
+  after_update lambda { authentications.map(&:save) }
   
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
@@ -30,6 +34,10 @@ protected
   def apply_facebook(omniauth)
     if (extra = omniauth['extra']['user_hash'] rescue false)
       self.email = (extra['email'] rescue '')
+      self.user_hash = extra
+    end
+    if (user_info = omniauth["user_info"] rescue false)
+      self.user_info = user_info
     end
   end
 end

@@ -3,6 +3,8 @@ class AuthenticationsController < InheritedResources::Base
   
   def create
     omniauth = request.env["omniauth.auth"]
+    Rails.logger.debug "!!!!!!!!!!!!"
+    Rails.logger.debug(omniauth)
     authentication = Authentication.find_by_provider_and_uid(omniauth['provider'], omniauth['uid'])
     if authentication
       flash[:notice] = "Signed in successfully."
@@ -12,13 +14,14 @@ class AuthenticationsController < InheritedResources::Base
       flash[:notice] = "Authentication successful."
       redirect_to collection_url
     else
-      user = User.new
+      user = User.find_or_initialize_by(:email => (omniauth["user_info"]["email"] rescue nil))
       user.apply_omniauth(omniauth)
       if user.save
         flash[:notice] = "Signed in successfully."
         sign_in_and_redirect(:user, user)
       else
-        session[:omniauth] = omniauth.except('extra')
+        Rails.logger.debug(user.errors.to_json)
+        session[:omniauth] = omniauth
         redirect_to new_user_registration_url
       end
     end
