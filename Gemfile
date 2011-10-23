@@ -25,7 +25,7 @@ end
 gem "unicorn", "~> 4.1.1"
 gem "heroku", "~> 2.11.0"
 
-group :test do
+group :development, :test do
   gem "rspec-rails", "~> 2.7.0"
   gem "factory_girl", "~> 2.2.0"
 end

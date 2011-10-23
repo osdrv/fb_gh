@@ -1,2 +1,0 @@
-class TitleController < ApplicationController
-end
