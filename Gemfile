@@ -11,7 +11,9 @@ gem "bson_ext", "~> 1.4.1"
 
 gem "http_accept_language"
 gem "devise", "~> 1.4.9"
-gem "omniauth", "~> 1.0.0.beta1"
+gem "omniauth", "~> 0.3.2"
+gem "oa-facebook", "~> 0.2.3"
+gem "oa-oauth", "~> 0.3.2"
 gem "octopi", "~> 0.4.5"
 
 group :assets do
