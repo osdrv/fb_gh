@@ -70,12 +70,14 @@
     <script id="CommitTemplate" type="text/x-jquery-tmpl">
       <li class="commit">
         <a href="${http_url}">
-          <div class="author">
-            {{if committer.avatar_url}}
-              <div class="userpic"><img src="${committer.avatar_url}" /></div>
-            {{/if}}
-            <div class="username">${committer.login}</div>
-          </div>
+          {{if committer}}
+            <div class="author">
+              {{if committer.avatar_url}}
+                <div class="userpic"><img src="${committer.avatar_url}" /></div>
+              {{/if}}
+              <div class="username">${committer.login}</div>
+            </div>
+          {{/if}}
           <div class="sha">${sha}</div>
           <div class="commit_message">${commit.message}</div>
           <div class="clear-both"></div>
