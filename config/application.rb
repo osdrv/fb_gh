@@ -49,5 +49,7 @@ module FbGh
     config.assets.version = '1.0'
     
     config.available_locales = %w(en ru)
+    
+    config.assets.initialize_on_precompile = false
   end
 end

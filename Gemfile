@@ -15,6 +15,7 @@ gem "omniauth", "~> 0.3.2"
 gem "oa-facebook", "~> 0.2.3"
 gem "oa-oauth", "~> 0.3.2"
 gem "octopi", "~> 0.4.5"
+gem "fb_graph", "~> 2.1.10"
 
 group :assets do
   gem "sass-rails",   "~> 3.1.4"
