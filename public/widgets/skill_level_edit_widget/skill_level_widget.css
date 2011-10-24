@@ -1,8 +1,10 @@
-#name-span{
+.name-span{
     font-weight: bold;
     margin-right: 3px;
     max-width: 50px;
+    cursor: pointer;
 }
+
 .float-left{
     float:left;
 }
@@ -17,17 +19,28 @@
     margin: 2px;
     width: 7px;
     height: 15px;
+    background: transparent;
 }
 
-#gui-input{
+.level-item:hover{
+    height: 17px;
+    margin-top: -2px;
+    cursor:pointer;
+}
+
+.level-item-achieved{
+    background-color: #69A74E;
+}
+
+.gui-input{
     min-height: 30px;
     max-width: auto;
 }
 
-#decrease-level-button{
+.decrease-level-button{
     background-image: url(../img/minus.png);
 }
 
-#increase-level-button{
+.increase-level-button{
     background-image: url(../img/plus.png);
 }
