@@ -1,4 +1,4 @@
-widget_html = " <div class='gui-input'> <span class='name-span float-left'></span> <div class='decrease-level-button level-button float-left'></div> <div class='float-left level-container'> </div> <div class='increase-level-button level-button float-left'></div></div>"
+widget_html = " <div class='gui-input'> <span class='skill-name-span float-left'></span> <div class='decrease-level-button level-button float-left'></div> <div class='float-left level-container'> </div> <div class='increase-level-button level-button float-left'></div></div>"
 bar_html = "<div class='level-item float-left' ></div>"
 
 function propertyDefaultGetter(hash, property, defValue) {
@@ -15,12 +15,14 @@ function initSkillLevelWidget(input, options) {
     var min = 1
     var max = propertyDefaultGetter(options, 'max', 10)
     var skill_name = $(input).attr('name')
+    var skill_text = $(input).attr('text')
     $(input).wrap('<div id=skill-widget-' + skill_name + '></div>').after(widget_html)
     $(input).val(value)
     var item_div_id = '#skill-widget-' + skill_name
-    $(item_div_id + ' .name-span').text(skill_name)
+    $(item_div_id + ' .skill-name-span').text(skill_text)
     for (var i = min; i <= max; i++) {
-        $(item_div_id + ' .level-container').before("<div class='level-item float-left' value=" + i + "></div>")
+        console.log('add item to', item_div_id)
+        $(item_div_id + ' .level-container').append("<div class='level-item float-left' value=" + i + "></div>")
         if (i <= value) {
             $(item_div_id + ' .level-item[value=' + i + ']').addClass('level-item-achieved')
         }
@@ -45,10 +47,8 @@ function initSkillLevelWidget(input, options) {
     })
     $(item_div_id + ' .level-item').click(function() {
         var i, v = parseInt($(this).attr('value'));
-        for (i = min-1; i <= v; i++)
-            $(item_div_id + ' .level-item[value=' + i + ']').addClass('level-item-achieved')
-        for (i = v+1; i <= max; i++)
-            $(item_div_id + ' .level-item[value=' + i + ']').removeClass('level-item-achieved')
+        $(item_div_id + ' .level-item:lt('+ v + ')').addClass('level-item-achieved')
+        $(item_div_id + ' .level-item:gt('+ (v-1) + ')').removeClass('level-item-achieved')
         onBeforeValueChanged()
         $(input).val($(this).attr('value'))
         onAfterValueChanged()

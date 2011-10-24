@@ -1,7 +1,6 @@
-.name-span{
+.skill-name-span{
     font-weight: bold;
     margin-right: 3px;
-    max-width: 50px;
     cursor: pointer;
 }
 
@@ -38,9 +37,9 @@
 }
 
 .decrease-level-button{
-    background-image: url(../img/minus.png);
+    background: url(../img/minus.png) no-repeat;
 }
 
 .increase-level-button{
-    background-image: url(../img/plus.png);
+    background: url(../img/plus.png) no-repeat;
 }

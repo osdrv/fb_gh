@@ -8,11 +8,13 @@
 </head>
 <script type="text/javascript">
     $(function(){
-        initSkillLevelWidget($('.skill-input:input'),{value:2})
+        $('.skill-input:input').each(function(){
+            initSkillLevelWidget($(this),{value:2})
+        })
     })
 </script>
 <input type='hidden' class='skill-input' name="ruby">
-
+<input type='hidden' class='skill-input' name="java">
 <body>
 
 </body>
