@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>Edit your skill, interests and projects here</title>
+    <link type="text/css" rel="stylesheet" media="all" href="skill_edit_page.css" />
+    <link type="text/css" rel="stylesheet" media="all" href="../widgets/skill_level_edit_widget/skill_level_widget.css" />
+    <script type="text/javascript" src="../widgets/skill_level_edit_widget/skill_level_widget.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
+    </head>
+    <script type="text/javascript">
+        $(function(){
+            $('input.skill[type=hidden]').each(function(){
+                initSkillLevelWidget($(this),{value:2})
+            })
+        })
+    </script>
+</head>
+<body>
+<div id='main-container'>
+    <div id='name-container'>
+         <div id='avatar-container'></div>
+         <div id='name'>%USERNAME%</div>
+    </div>
+    <div id='processing-indicator'></div>
+    <div id='interests-container' class='items-container'>
+        <div id='interest-label' class='items-container-label'>Interests :</div>
+        <a id='add-interest-button' class='items-container-add-button'> + Add interest </a>
+        <div id='interests-list'>
+            <div class='interest'><span>JavaScript</span><div class='remove-image-container'>
+                    <div class='remove-image'></div>
+                </div>
+            </div>
+            <div class='interest'><span>Ruby on rails</span><div class='remove-image-container'>
+                    <div class='remove-image'></div>
+                </div>
+            </div>
+            <div class='interest'><span>Php</span><div class='remove-image-container'>
+                    <div class='remove-image'></div>
+                </div>
+            </div>
+            <div class='interest'><span>C++</span><div class='remove-image-container'>
+                        <div class='remove-image'></div>
+                    </div>
+                </div>
+            <div class='interest'><span>Python</span><div class='remove-image-container'>
+                        <div class='remove-image'></div>
+                    </div>
+                </div>
+            <div class='interest'><span>Django</span><div class='remove-image-container'>
+                        <div class='remove-image'></div>
+                    </div>
+                </div>
+            <div class='interest'><span>Java</span><div class='remove-image-container'>
+                        <div class='remove-image'></div>
+                    </div>
+                </div>
+            <div class='interest'><span>Silverlight</span><div class='remove-image-container'>
+                        <div class='remove-image'></div>
+                    </div>
+                </div>
+            <div class='interest'><span>C#</span><div class='remove-image-container'>
+                        <div class='remove-image'></div>
+                    </div>
+                </div>
+                <div class='interest'><span>Common list</span><div class='remove-image-container'>
+                        <div class='remove-image'></div>
+                    </div>
+                </div>
+                <div class='interest'><span>brainfuck</span><div class='remove-image-container'>
+                        <div class='remove-image'></div>
+                    </div>
+                </div>
+        </div>
+        </div>
+    <div id='skill-container' class='items-container'>
+        <div id='skills-label' class='items-container-label'>Skills :</div>
+        <a id='add-skill-button' class='items-container-add-button'> + Add skill</a>
+        <div id='skill-list'>
+            <input text='JavaScript' name='javascript' type='hidden' id='1' class='skill'>
+            <input text='Ruby on rails' name='rubyonrails' type='hidden' id='2' class='skill'>
+            <input text ='C++' name='cplusplus' type='hidden' id='3' class='skill'>
+            <input text='C' type='hidden' name ='c' id='4' class='skill'>
+            <input text='Python' type='hidden' name='python' id='5' class='skill'>
+        </div>
+    </div>
+    <span id='my-projects-container'><a id='my-projects' href="#">My projects</a></span>
+</div>
+</body>
+</html>
