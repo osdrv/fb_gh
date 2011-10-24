@@ -45,10 +45,8 @@ function initSkillLevelWidget(input, options) {
     })
     $(item_div_id + ' .level-item').click(function() {
         var i, v = parseInt($(this).attr('value'));
-        for (i = min-1; i <= v; i++)
-            $(item_div_id + ' .level-item[value=' + i + ']').addClass('level-item-achieved')
-        for (i = v+1; i <= max; i++)
-            $(item_div_id + ' .level-item[value=' + i + ']').removeClass('level-item-achieved')
+        $(item_div_id + ' .level-item:lt('+ v + ')').addClass('level-item-achieved')
+        $(item_div_id + ' .level-item:gt('+ (v-1) + ')').removeClass('level-item-achieved')
         onBeforeValueChanged()
         $(input).val($(this).attr('value'))
         onAfterValueChanged()
