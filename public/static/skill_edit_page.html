@@ -13,68 +13,74 @@
             $('input.skill[type=hidden]').each(function(){
                 initSkillLevelWidget($(this),{value:2})
             })
+            $('.remove-image-container').toggle(function(){
+                $(this).parent().css('text-decoration','line-through')
+            },function(){
+                $(this).parent().css('text-decoration','none')
+
+            })
         })
     </script>
 </head>
 <body>
 <div id='main-container'>
     <div id='name-container'>
-         <div id='avatar-container'></div>
-         <div id='name'>%USERNAME%</div>
+         <div id='avatar-container'><img src='img/comix.png' alt='Your picture'></div>
+         <h1 id='name'><a id='username-link'>%USERNAME% </a> </h1>
     </div>
     <div id='processing-indicator'></div>
     <div id='interests-container' class='items-container'>
-        <div id='interest-label' class='items-container-label'>Interests :</div>
+        <div id='interest-label' class='items-container-label'>Interests: </div>
         <a id='add-interest-button' class='items-container-add-button'> + Add interest </a>
-        <div id='interests-list'>
-            <div class='interest'><span>JavaScript</span><div class='remove-image-container'>
-                    <div class='remove-image'></div>
+        <ul id='interests-list'>
+            <li class='interest'><span><a class='interest-link' href="#">Django</a></span><div class='remove-image-container'>
+                    <img class='remove-image' src='img/delete.png' alt='x'>
                 </div>
-            </div>
-            <div class='interest'><span>Ruby on rails</span><div class='remove-image-container'>
-                    <div class='remove-image'></div>
+            </li>
+            <li class='interest'><span><a class='interest-link' href="#">Ruby</a></span><div class='remove-image-container'>
+                    <img class='remove-image' src='img/delete.png' alt='x'>
                 </div>
-            </div>
-            <div class='interest'><span>Php</span><div class='remove-image-container'>
-                    <div class='remove-image'></div>
+            </li>
+            <li class='interest'><span><a class='interest-link' href="#">Ruby on rails</a></span><div class='remove-image-container'>
+                    <img class='remove-image' src='img/delete.png' alt='x'>
                 </div>
-            </div>
-            <div class='interest'><span>C++</span><div class='remove-image-container'>
-                        <div class='remove-image'></div>
+            </li>
+            <li class='interest'><span><a class='interest-link' href="#">php</a></span><div class='remove-image-container'>
+                        <img class='remove-image' src='img/delete.png' alt='x'>
                     </div>
-                </div>
-            <div class='interest'><span>Python</span><div class='remove-image-container'>
-                        <div class='remove-image'></div>
+                </li>
+            <li class='interest'><span><a class='interest-link' href="#">C#</a></span><div class='remove-image-container'>
+                        <img class='remove-image' src='img/delete.png' alt='x'>
                     </div>
-                </div>
-            <div class='interest'><span>Django</span><div class='remove-image-container'>
-                        <div class='remove-image'></div>
+                </li>
+            <li class='interest'><span><a class='interest-link' href="#">Silverlight</a></span><div class='remove-image-container'>
+                        <img class='remove-image' src='img/delete.png' alt='x'>
                     </div>
-                </div>
-            <div class='interest'><span>Java</span><div class='remove-image-container'>
-                        <div class='remove-image'></div>
+                </li>
+            <li class='interest'><span><a class='interest-link' href="#">Javascript</a></span><div class='remove-image-container'>
+                        <img class='remove-image' src='img/delete.png' alt='x'>
                     </div>
-                </div>
-            <div class='interest'><span>Silverlight</span><div class='remove-image-container'>
-                        <div class='remove-image'></div>
+                </li>
+            <li class='interest'><span><a class='interest-link' href="#">Python</a></span><div class='remove-image-container'>
+                        <img class='remove-image' src='img/delete.png' alt='x'>
                     </div>
-                </div>
-            <div class='interest'><span>C#</span><div class='remove-image-container'>
-                        <div class='remove-image'></div>
+                </li>
+            <li class='interest'><span><a class='interest-link' href="#">C</a></span><div class='remove-image-container'>
+                        <img class='remove-image' src='img/delete.png' alt='x'>
                     </div>
+                </li>
+            <li class='interest'><span><a class='interest-link' href="#">C++</a></span><div class='remove-image-container'>
+                    <img class='remove-image' src='img/delete.png' alt='x'>
                 </div>
-                <div class='interest'><span>Common list</span><div class='remove-image-container'>
-                        <div class='remove-image'></div>
-                    </div>
+            </li>
+            <li class='interest'><span><a class='interest-link' href="#">brainfuck</a></span><div class='remove-image-container'>
+                    <img class='remove-image' src='img/delete.png' alt='x'>
                 </div>
-                <div class='interest'><span>brainfuck</span><div class='remove-image-container'>
-                        <div class='remove-image'></div>
-                    </div>
-                </div>
-        </div>
+            </li>
+        </ul>
         </div>
     <div id='skill-container' class='items-container'>
-        <div id='skills-label' class='items-container-label'>Skills :</div>
+        <div id='skills-label' class='items-container-label'>Skills: </div>
         <a id='add-skill-button' class='items-container-add-button'> + Add skill</a>
         <div id='skill-list'>
             <input text='JavaScript' name='javascript' type='hidden' id='1' class='skill'>

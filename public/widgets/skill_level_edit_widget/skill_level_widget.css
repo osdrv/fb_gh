@@ -2,6 +2,47 @@
     font-weight: bold;
     margin-right: 3px;
     cursor: pointer;
+    display: block;
+    float:left;
+}
+
+.skill-name-link-removed
+{
+    text-decoration: line-through !important;
+}
+
+.remove-skill-span{
+    font-size: 10px;
+    color: black;
+    display: block;
+    float:left;
+    clear: both;
+    margin-top: -4px;
+    margin-left: 2px;
+    padding: 0;
+}
+
+ .skill-name-link{
+     text-decoration: none;
+ }
+
+.remove-skill-link{
+    font-weight: normal;
+    text-decoration: none;
+}
+
+.remove-skill-link:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.gui-input{
+    min-height: 30px;
+    max-width: auto;
+}
+
+.gui-container{
+    float:right;
 }
 
 .float-left{
@@ -29,11 +70,6 @@
 
 .level-item-achieved{
     background-color: #69A74E;
-}
-
-.gui-input{
-    min-height: 30px;
-    max-width: auto;
 }
 
 .decrease-level-button{
