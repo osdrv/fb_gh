@@ -2,6 +2,10 @@ body{
   font-family: Arial, Helvetica, sans-serif;
 }
 
+a{
+    outline: none !important;
+}
+
 #main-container{
     border: 1px solid #5B74A8;
     border-radius :10px;
@@ -90,6 +94,7 @@ body{
     font-weight: bold;
 }
 .interest{
+    color: white;
     list-style-type: none;
     padding: 3px;
     background: #5B74A8;
@@ -146,6 +151,7 @@ body{
 }
 
 #my-projects-container{
+    color: white;
     background-color: #69A74E;
     display: block;
     margin: auto;
@@ -154,10 +160,6 @@ body{
     clear:both;
     border: 1px solid black;
     text-align: center;
-}
-
-#my-projects-container:hover{
-    text-decoration: underline;
 }
 
 .skill-name-link{
