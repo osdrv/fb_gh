@@ -12,6 +12,7 @@ a{
 }
 
 #main-container{
+    text-align: center;
     border: 1px solid #5B74A8;
     border-radius :10px;
     -webkit-border-radius: 10px;
@@ -26,8 +27,10 @@ a{
 }
 
 #name-container{
-    width: 400px;
-    margin: auto auto;
+    height: 50px;
+    position: relative;
+    width: auto;
+    max-width: 660px;
 }
 
 #avatar-container{
@@ -182,11 +185,11 @@ a{
 
 .form-popup{
     padding: 15px;
-    width: 350px;
     height: auto;
     border: 1px solid black;
     border-radius :10px;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     display: none;
+    background: white;
 }

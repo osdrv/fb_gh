@@ -16,26 +16,40 @@
         var interest_html = " <li class='interest'><span><a class='interest-link' href='#'>interest</a></span><div class='remove-image-container'> <img class='remove-image' src='img/delete.png' alt='x'> </div> </li>"
         var skill_html = "<input text='New Skill' name='newskill' type='hidden' class='skill'>"
         $(function(){
-            $('.button-cancel').click(function(){$.mask.close()})
+//           .css('left',($('#name-container').parent().width() - $('#name-container').width()/2))
+            $('#name-container').center({against:'parent'});
+            //init skill widgets
             $('input.skill[type=hidden]').each(function(){
                 initSkillLevelWidget($(this),{value:2})
             })
+            //settings up remove tag event
             $('.remove-image-container').live('click',function(){
                 $(this).parent().hide(500,function(){
                     $(this).remove()
                 });
             })
+            //settings up popups forms
             $('#add-interest-button').click(function(){
                 $('#interest-input-popup').expose(
                        {
-                        onLoad:function(){$(this).show().center()},
-                        onClose:function(){$(this).hide()
+                        onLoad:function(){
+                            this.getExposed().show().css('position','absolute').center({against:'parent'})
+                        },
+                        onClose:function(){
+                            this.getExposed().hide()
                        }
                 })})
-//            $('#add-skill-button').click(function(){
-//                $('#skill-list').append(skill_html)
-//                initSkillLevelWidget($('.skill:last'),{value:1})
-//            })
+            $('#add-skill-button').click(function(){
+                $('#skill-input-popup').expose(
+                       {
+                        onLoad:function(){
+                            this.getExposed().show().css('position','absolute').center({against:'parent'})
+                        },
+                        onClose:function(){
+                            this.getExposed().hide()
+                       }
+                })})
+            $('.button-cancel').click(function(){$.mask.close()})
         })
     </script>
 </head>
@@ -43,9 +57,9 @@
 <div id='main-container'>
     <div id='name-container'>
          <div id='avatar-container'><img src='img/comix.png' alt='Your picture'></div>
-         <h1 id='name'><a id='username-link'>%USERNAME% </a> </h1>
+         <h1 id='name'><a id='username-link'>dasdsdasdasasdsadasdas </a></h1>
+         <div id='processing-indicator'></div>
     </div>
-    <div id='processing-indicator'></div>
     <div id='interests-container' class='items-container'>
         <div id='interest-label' class='items-container-label'>Interests: </div>
         <a id='add-interest-button' class='items-container-add-button'> + Add interest </a>
@@ -121,16 +135,16 @@
          </div>
     </form>
     </div>
-    <!--<div id='skill-input-popup' class='form-popup'>-->
-        <!--<form action="" id='add-skill-form'>-->
-            <!--<label for="skill-select">Enter your skill</label>-->
-            <!--<input id='skill-select' type="text" autocomplete="off">-->
-             <!--<div id='add-skill-buttons' class='button-box'>-->
-                <!--<span id='save-skill-button' class='button-confirm' ><a href="#" id='save-new-skill-link'>Save</a></span>-->
-                <!--<span>or</span>-->
-                <!--<span id='cancel-skill-button' class='button-cancel' ><a href="#" id='cancel-new-skill-link' >cancel</a></span>-->
-             <!--</div>-->
-        <!--</form>-->
-    <!--</div>-->
+    <div id='skill-input-popup' class='form-popup'>
+        <form action="" id='add-skill-form'>
+            <label for="skill-select">Enter your skill</label>
+            <input id='skill-select' type="text" autocomplete="off">
+             <div id='add-skill-buttons' class='button-box'>
+                <span id='save-skill-button' class='button-confirm' ><a href="#" id='save-new-skill-link'>Save</a></span>
+                <span>or</span>
+                <span id='cancel-skill-button' class='button-cancel' ><a href="#" id='cancel-new-skill-link' >cancel</a></span>
+             </div>
+        </form>
+    </div>
 </body>
 </html>
