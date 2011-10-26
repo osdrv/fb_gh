@@ -4,6 +4,10 @@ class User
   
   field :user_info, :type => Hash
   field :user_hash, :type => Hash
+  field :uid
+  field :provider
+  validates_uniqueness_of :uid, :context => :provider
+  
   
   has_many :authentications
   after_update lambda { authentications.map(&:save) }
@@ -18,7 +22,7 @@ class User
     when 'facebook'
       self.apply_facebook(omniauth)
     end
-    authentications.build(:provider => omniauth['provider'], :uid => omniauth['uid'], :token =>(omniauth['credentials']['token'] rescue nil))
+    authentications.build(:provider => omniauth['provider'], :uid => omniauth['uid'], :token => (omniauth['credentials']['token'] rescue nil))
   end
 
   def facebook
@@ -27,6 +31,12 @@ class User
 
   def password_required?
     (authentications.empty? || !password.blank?) && super
+  end
+
+  %w(name first_name middle_name last_name nickname image timezone locale gender id link urls).each do |m|
+    define_method m do
+      (user_info[m] rescue nil) || (user_hash[m] rescue nil)
+    end
   end
 
 protected

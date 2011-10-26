@@ -5,3 +5,6 @@
  *= require_self
  *= require_tree . 
 */
+
+body { font: 18px Arial,Helvetica,"Nimbus Sans L",sans-serif; color: #313131; }
+body * { margin: 0; padding: 0; }

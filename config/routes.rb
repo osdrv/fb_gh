@@ -1,9 +1,10 @@
 FbGh::Application.routes.draw do
   devise_for :users
-  match "/auth/:provider/callback" => "authentications#create"
+  get "/callback/:provider" => "authentications#create"
+  get "/auth/failure" => "authentications#failure"
   resources :authentications
   resources :meetups
-  get "/user" => "users#show", :as => :user
+  match "/me" => "users#show"
   resources :users
   root :to => 'title#welcome'
 end
