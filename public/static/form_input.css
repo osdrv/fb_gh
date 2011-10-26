@@ -1,0 +1,27 @@
+.button-box{
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+
+.button-confirm{
+    width: 50px;
+    padding: 3px;
+    height: 15px;
+    border: 1px solid #006400;
+    background-color: #69A74E;
+    font-size: 14px;
+}
+
+.button-confirm a {
+    color: white;
+    text-decoration: none;
+}
+
+.button-cancel a{
+    color: #069;
+    text-decoration: none;
+}
+
+.button-cancel:hover{
+    text-decoration: underline;
+}

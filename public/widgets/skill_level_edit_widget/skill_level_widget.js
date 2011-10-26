@@ -9,7 +9,7 @@ function propertyDefaultGetter(hash, property, defValue) {
 }
 
 function initSkillLevelWidget(input, options) {
-    var value = propertyDefaultGetter(options, 'value', 0)
+    var value = propertyDefaultGetter(options, 'value', 1) || 1
     var onBeforeValueChanged = propertyDefaultGetter(options, 'onBeforeValueChanged', function() {
     })
     var onAfterValueChanged = propertyDefaultGetter(options, 'onAfterValueChanged', function() {
