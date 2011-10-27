@@ -22,11 +22,11 @@ function initSkillLevelWidget(input, options) {
     })
     var onAfterRestore = propertyDefaultGetter(options, 'onAfterRestore', function() {
     })
+    var allow_remove_label = propertyDefaultGetter(options, 'allowRemove', true)
     var min = 1
     var max = propertyDefaultGetter(options, 'max', 10)
     var skill_name = $(input).attr('name')
-    var skill_text = $(input).attr('text')
-    var allow_remove_label = propertyDefaultGetter(options, 'allowRemove', true)
+    var skill_text = $(input).text() || $(input).attr('text')
     $(input).wrap('<div id=skill-widget-' + skill_name + '></div>').after(widget_html)
     $(input).val(value)
     var item_div_id = '#skill-widget-' + skill_name

@@ -6,18 +6,20 @@
     <link type="text/css" rel="stylesheet" media="all" href="skill_edit_page.css" />
     <link type="text/css" rel="stylesheet" media="all" href="form_input.css" />
     <link type="text/css" rel="stylesheet" media="all" href="../widgets/skill_level_edit_widget/skill_level_widget.css" />
+    <link type="text/css" rel="stylesheet" media="all" href="jquery.autocomplete.css"/>
     <script type="text/javascript" src="../widgets/skill_level_edit_widget/skill_level_widget.js"></script>
     <script type="text/javascript" src="../widgets/skill_level_edit_widget/skill_level_widget.js"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
     <script type="text/javascript" src="jquery.tools.min.js"></script>
-    <script type="text/javascript" src="jquery.center.min.js"></script>
+    <script type="text/javascript" src="jquery.center.js"></script>
+    <script type="text/javascript" src="jquery.autocomplete.pack.js"></script>
     </head>
     <script type="text/javascript">
-        var interest_html = " <li class='interest'><span><a class='interest-link' href='#'>interest</a></span><div class='remove-image-container'> <img class='remove-image' src='img/delete.png' alt='x'> </div> </li>"
-        var skill_html = "<input text='New Skill' name='newskill' type='hidden' class='skill'>"
         $(function(){
-//           .css('left',($('#name-container').parent().width() - $('#name-container').width()/2))
-            $('#name-container').center({against:'parent'});
+            var tags = ['Python','Django','Ruby','Functional programming','Declarative programming','Ruby on Rails','Qt','PyQt']
+            var skills = [{text:'C++',value:'cplusplus'},{text:'JavaScript',value:'javascript'},{text:'Database Architect',value:'databasearchitect'},{text:'lisp',value:'lisp'},{text:'SQL',value:'sql'},{text:'Mongo',value:'mongo'}]
+            $('#name-container').css('width',$('#name').width() + $('#avatar-container').width() + $('#processing-indicator').width()+10 )
+            $('#name-container').center({horizontal:true, vertical:false, position:'relative'})
             //init skill widgets
             $('input.skill[type=hidden]').each(function(){
                 initSkillLevelWidget($(this),{value:2})
@@ -25,31 +27,58 @@
             //settings up remove tag event
             $('.remove-image-container').live('click',function(){
                 $(this).parent().hide(500,function(){
-                    $(this).remove()
+                    $(this).remove();
                 });
             })
             //settings up popups forms
+            $('#interest-select').autocomplete(tags,{matchContains:true,minChars:2})
+            $('#skill-select').autocomplete(skills,{matchContains:true,
+                                                    minChars:1,
+                                                    formatItem:function(row){
+                                                        return row.text}
+                                                    ,
+                                                    formatMatch:function(row){
+                                                        return row.text}
+                                                    })
+            $('#interest-select').result(function(event, data ,value){$('#interest-val').val(value)});
+            $('#skill-select').result(function(event, data ,value){$('#skill-val').val(data.value)});
+            function onLoadPopup(){
+                this.getExposed().show().center().find('input:visible').focus();
+            }
+            function onClosePopup(){
+                this.getExposed().hide().find('input').text('').val('').next().val('')
+            }
+            function addInterestTag(){
+                var interest = $('#interest-val').val()
+                if (interest)
+                    $('#interests-list').append(" <li class='interest'><span><a class='interest-link' href='#'>"+interest+"</a></span><div class='remove-image-container'> <img class='remove-image' src='img/delete.png' alt='x'> </div> </li>")
+                    $.mask.close()
+                    $('#interest-val').val('')
+            }
+            $('#add-interest-form').submit(function(e){e.preventDefault();addInterestTag()})
+            function addNewSkill(){
+                var skill_name = $('#skill-val').val()
+                if (skill_name)
+                    $('#skill-list').append($("<input type='hidden' class='skill'>").text($('#skill-select').val()).attr('name',skill_name))
+                initSkillLevelWidget($('input:hidden:last'),{value:1})
+                $.mask.close()
+                $('#interest-val').val('')
+            }
+            $('#save-new-interest-link').click(addInterestTag)
+            $('#save-new-skill-link').click(addNewSkill)
+            $('.button-cancel').click(function(){$.mask.close()})
             $('#add-interest-button').click(function(){
                 $('#interest-input-popup').expose(
                        {
-                        onLoad:function(){
-                            this.getExposed().show().css('position','absolute').center({against:'parent'})
-                        },
-                        onClose:function(){
-                            this.getExposed().hide()
-                       }
+                        onLoad:onLoadPopup,
+                        onClose:onClosePopup
                 })})
             $('#add-skill-button').click(function(){
                 $('#skill-input-popup').expose(
                        {
-                        onLoad:function(){
-                            this.getExposed().show().css('position','absolute').center({against:'parent'})
-                        },
-                        onClose:function(){
-                            this.getExposed().hide()
-                       }
+                        onLoad:onLoadPopup,
+                        onClose:onClosePopup
                 })})
-            $('.button-cancel').click(function(){$.mask.close()})
         })
     </script>
 </head>
@@ -57,7 +86,7 @@
 <div id='main-container'>
     <div id='name-container'>
          <div id='avatar-container'><img src='img/comix.png' alt='Your picture'></div>
-         <h1 id='name'><a id='username-link'>dasdsdasdasasdsadasdas </a></h1>
+         <h1 id='name'><a id='username-link'>$USERNAME% </a></h1>
          <div id='processing-indicator'></div>
     </div>
     <div id='interests-container' class='items-container'>
@@ -111,40 +140,42 @@
             </li>
         </ul>
         </div>
+        <div id='interest-input-popup' class='form-popup'>
+            <form action="" id='add-interest-form'>
+                <label for="interest-select">Enter your interest</label>
+                <input id='interest-select' type="text" autocomplete="off">
+                <input id='interest-val' type=hidden>
+                <div id='add-interest-buttons' class='button-box'>
+                    <span id='save-interest-button' class='button-confirm' ><a href="#" id='save-new-interest-link'>Save</a></span>
+                    <span>or</span>
+                    <span id='cancel-interest-button' class='button-cancel' ><a href="#" id='cancel-new-interest-link' >cancel</a></span>
+                </div>
+            </form>
+        </div>
+        <div id='skill-input-popup' class='form-popup'>
+            <form action="" id='add-skill-form'>
+                <label for="skill-select">Enter your skill</label>
+                <input id='skill-select' type="text" autocomplete="off">
+                <input id='skill-val' type=hidden>
+                <div id='add-skill-buttons' class='button-box'>
+                    <span id='save-skill-button' class='button-confirm' ><a href="#" id='save-new-skill-link'>Save</a></span>
+                    <span>or</span>
+                    <span id='cancel-skill-button' class='button-cancel' ><a href="#" id='cancel-new-skill-link' >cancel</a></span>
+                </div>
+            </form>
+        </div>
     <div id='skill-container' class='items-container'>
         <div id='skills-label' class='items-container-label'>Skills: </div>
         <a id='add-skill-button' class='items-container-add-button'> + Add skill</a>
         <div id='skill-list'>
-            <input text='JavaScript' name='javascript' type='hidden' id='1' class='skill'>
-            <input text='Ruby on rails' name='rubyonrails' type='hidden' id='2' class='skill'>
-            <input text ='C++' name='cplusplus' type='hidden' id='3' class='skill'>
-            <input text='C' type='hidden' name ='c' id='4' class='skill'>
-            <input text='Python' type='hidden' name='python' id='5' class='skill'>
+            <input text='JavaScript' name='javascript' type='hidden'  class='skill'>
+            <input text='Ruby on rails' name='rubyonrails' type='hidden'  class='skill'>
+            <input text ='C++' name='cplusplus' type='hidden'  class='skill'>
+            <input text='C' type='hidden' name ='c'  class='skill'>
+            <input text='Python' type='hidden' name='python'  class='skill'>
         </div>
     </div>
     <span id='my-projects-container'><a id='my-projects' href="#">My projects</a></span>
 </div>
-    <div id='interest-input-popup' class='form-popup'>
-    <form action="" id='add-interest-form'>
-        <label for="interest-select">Enter your interest</label>
-        <input id='interest-select' type="text" autocomplete="off">
-         <div id='add-interest-buttons' class='button-box'>
-            <span id='save-interest-button' class='button-confirm' ><a href="#" id='save-new-interest-link'>Save</a></span>
-            <span>or</span>
-            <span id='cancel-interest-button' class='button-cancel' ><a href="#" id='cancel-new-interest-link' >cancel</a></span>
-         </div>
-    </form>
-    </div>
-    <div id='skill-input-popup' class='form-popup'>
-        <form action="" id='add-skill-form'>
-            <label for="skill-select">Enter your skill</label>
-            <input id='skill-select' type="text" autocomplete="off">
-             <div id='add-skill-buttons' class='button-box'>
-                <span id='save-skill-button' class='button-confirm' ><a href="#" id='save-new-skill-link'>Save</a></span>
-                <span>or</span>
-                <span id='cancel-skill-button' class='button-cancel' ><a href="#" id='cancel-new-skill-link' >cancel</a></span>
-             </div>
-        </form>
-    </div>
 </body>
 </html>
