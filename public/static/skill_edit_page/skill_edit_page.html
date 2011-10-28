@@ -4,15 +4,15 @@
 <head>
     <title>Edit your skill and interests </title>
     <link type="text/css" rel="stylesheet" media="all" href="skill_edit_page.css" />
-    <link type="text/css" rel="stylesheet" media="all" href="form_input.css" />
-    <link type="text/css" rel="stylesheet" media="all" href="../widgets/skill_level_edit_widget/skill_level_widget.css" />
-    <link type="text/css" rel="stylesheet" media="all" href="jquery.autocomplete.css"/>
-    <script type="text/javascript" src="../widgets/skill_level_edit_widget/skill_level_widget.js"></script>
-    <script type="text/javascript" src="../widgets/skill_level_edit_widget/skill_level_widget.js"></script>
+    <link type="text/css" rel="stylesheet" media="all" href="../form_input.css" />
+    <link type="text/css" rel="stylesheet" media="all" href="../global.css" />
+    <link type="text/css" rel="stylesheet" media="all" href="../../widgets/skill_level_edit_widget/skill_level_widget.css" />
+    <link type="text/css" rel="stylesheet" media="all" href="../side_libs/jquery.autocomplete.css"/>
+    <script type="text/javascript" src="../../widgets/skill_level_edit_widget/skill_level_widget.js"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
-    <script type="text/javascript" src="jquery.tools.min.js"></script>
-    <script type="text/javascript" src="jquery.center.js"></script>
-    <script type="text/javascript" src="jquery.autocomplete.pack.js"></script>
+    <script type="text/javascript" src="../side_libs/jquery.tools.min.js"></script>
+    <script type="text/javascript" src="../side_libs/jquery.center.js"></script>
+    <script type="text/javascript" src="../side_libs/jquery.autocomplete.pack.js"></script>
     <script type="text/javascript">
         $(function(){
             $('#name-container').css('width', $('#name').width() + $('#avatar-container').width() + $('#processing-indicator').width() + 10)
@@ -26,59 +26,59 @@
     <script type="text/javascript" src="skill_edit_page.js"></script>
 </head>
 <body>
-<div id='main-container'>
+<div id='main-container' class='main-container'>
     <div id='name-container'>
-         <div id='avatar-container'><img src='img/comix.png' alt='Your picture'></div>
+         <div id='avatar-container'><img src='../img/comix.png' alt='Your picture'></div>
          <h1 id='name'><a id='username-link'>$USERNAME% </a></h1>
          <div id='processing-indicator'></div>
     </div>
     <div id='interests-container' class='items-container'>
         <div id='interest-label' class='items-container-label'>Interests: </div>
-        <a id='add-interest-button' class='items-container-add-button'> + Add interest </a>
+        <a id='add-interest-button' class='items-container-add-button '> + Add interest </a>
         <ul id='interests-list'>
             <input type='hidden' id='interests' value=''>
             <li class='interest'><span><a class='interest-link' href="#">Django</a></span><div class='remove-image-container'>
-                    <img class='remove-image' src='img/delete.png' alt='x'>
+                    <img class='remove-image' src='../img/delete.png' alt='x'>
                 </div>
             </li>
             <li class='interest'><span><a class='interest-link' href="#">Ruby</a></span><div class='remove-image-container'>
-                    <img class='remove-image' src='img/delete.png' alt='x'>
+                    <img class='remove-image' src='../img/delete.png' alt='x'>
                 </div>
             </li>
             <li class='interest'><span><a class='interest-link' href="#">Ruby on rails</a></span><div class='remove-image-container'>
-                    <img class='remove-image' src='img/delete.png' alt='x'>
+                    <img class='remove-image' src='../img/delete.png' alt='x'>
                 </div>
             </li>
             <li class='interest'><span><a class='interest-link' href="#">php</a></span><div class='remove-image-container'>
-                        <img class='remove-image' src='img/delete.png' alt='x'>
+                        <img class='remove-image' src='../img/delete.png' alt='x'>
                     </div>
                 </li>
             <li class='interest'><span><a class='interest-link' href="#">C#</a></span><div class='remove-image-container'>
-                        <img class='remove-image' src='img/delete.png' alt='x'>
+                        <img class='remove-image' src='../img/delete.png' alt='x'>
                     </div>
                 </li>
             <li class='interest'><span><a class='interest-link' href="#">Silverlight</a></span><div class='remove-image-container'>
-                        <img class='remove-image' src='img/delete.png' alt='x'>
+                        <img class='remove-image' src='../img/delete.png' alt='x'>
                     </div>
                 </li>
             <li class='interest'><span><a class='interest-link' href="#">Javascript</a></span><div class='remove-image-container'>
-                        <img class='remove-image' src='img/delete.png' alt='x'>
+                        <img class='remove-image' src='../img/delete.png' alt='x'>
                     </div>
             </li>
             <li class='interest'><span><a class='interest-link' href="#">Python</a></span><div class='remove-image-container'>
-                        <img class='remove-image' src='img/delete.png' alt='x'>
+                        <img class='remove-image' src='../img/delete.png' alt='x'>
                     </div>
                 </li>
             <li class='interest'><span><a class='interest-link' href="#">C</a></span><div class='remove-image-container'>
-                        <img class='remove-image' src='img/delete.png' alt='x'>
+                        <img class='remove-image' src='../img/delete.png' alt='x'>
                     </div>
                 </li>
             <li class='interest'><span><a class='interest-link' href="#">C++</a></span><div class='remove-image-container'>
-                    <img class='remove-image' src='img/delete.png' alt='x'>
+                    <img class='remove-image' src='../img/delete.png' alt='x'>
                 </div>
             </li>
             <li class='interest'><span><a class='interest-link' href="#">brainfuck</a></span><div class='remove-image-container'>
-                    <img class='remove-image' src='img/delete.png' alt='x'>
+                    <img class='remove-image' src='../img/delete.png' alt='x'>
                 </div>
             </li>
         </ul>

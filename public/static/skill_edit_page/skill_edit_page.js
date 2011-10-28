@@ -42,7 +42,7 @@
     function addInterestTag() {
         var interest = $('#interest-val').val()
         if (interest)
-            $('#interests-list').append(" <li class='interest'><span><a class='interest-link' href='#'>" + interest + "</a></span><div class='remove-image-container'> <img class='remove-image' src='img/delete.png' alt='x'> </div> </li>")
+            $('#interests-list').append(" <li class='interest'><span><a class='interest-link' href='#'>" + interest + "</a></span><div class='remove-image-container'> <img class='remove-image' src='../img/delete.png' alt='x'> </div> </li>")
         $.mask.close()
         $('#interest-val').val('')
     }
