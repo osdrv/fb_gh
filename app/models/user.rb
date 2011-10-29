@@ -13,9 +13,9 @@ class User
   after_update lambda { authentications.map(&:save) }
   
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable
   
-  attr_accessible :email, :password, :password_confirmation, :remember_me
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :user_info, :user_hash, :uid, :provider
   
   def apply_omniauth(omniauth)
     case omniauth['provider']
@@ -33,7 +33,7 @@ class User
     (authentications.empty? || !password.blank?) && super
   end
 
-  %w(name first_name middle_name last_name nickname image timezone locale gender id link urls).each do |m|
+  %w(name first_name middle_name last_name nickname image timezone locale gender link urls).each do |m|
     define_method m do
       (user_info[m] rescue nil) || (user_hash[m] rescue nil)
     end

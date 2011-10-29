@@ -14,4 +14,12 @@ class ApplicationController < ActionController::Base
   def fb_client
     FbGraph::Auth.new(FB_APP_ID, FB_APP_SECRET).client
   end
+  
+private
+
+  def current_user
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+  end
+  helper_method :current_user
+  
 end

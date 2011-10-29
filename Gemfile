@@ -33,4 +33,8 @@ group :development, :test do
   gem "rspec-rails", "~> 2.7.0"
   gem "factory_girl", "~> 2.2.0"
   gem "database_cleaner", "~> 0.6.7"
+  gem "rb-fsevent", "~> 0.4.3.1"
+  gem "guard", "~> 0.8.8"
+  gem "guard-rspec", "~> 0.5.1"
+  gem "growl", "~> 1.0.3"
 end
