@@ -4,7 +4,7 @@ FbGh::Application.routes.draw do
   get "/auth/failure" => "authentications#failure"
   resources :authentications
   resources :meetups
-  match "/me" => "users#show"
+  get "/me" => "users#show"
   resources :users
   root :to => 'title#welcome'
 end
