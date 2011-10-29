@@ -1,6 +1,11 @@
 body{
     font-family: Arial, Helvetica, sans-serif;
 }
+.button-green{
+    padding: 3px;
+    border: 1px solid #006400;
+    background-color: #69A74E;
+}
 
 a{
     outline: none !important;

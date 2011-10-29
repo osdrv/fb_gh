@@ -83,30 +83,6 @@
             </li>
         </ul>
         </div>
-        <div id='interest-input-popup' class='form-popup'>
-            <form action="" id='add-interest-form'>
-                <label for="interest-select">Enter your interest</label>
-                <input id='interest-select' type="text" autocomplete="off">
-                <input id='interest-val' type=hidden>
-                <div id='add-interest-buttons' class='button-box'>
-                    <span id='save-interest-button' class='button-confirm' ><a href="#" id='save-new-interest-link'>Save</a></span>
-                    <span>or</span>
-                    <span id='cancel-interest-button' class='button-cancel' ><a href="#" id='cancel-new-interest-link' >cancel</a></span>
-                </div>
-            </form>
-        </div>
-        <div id='skill-input-popup' class='form-popup'>
-            <form action="" id='add-skill-form'>
-                <label for="skill-select">Enter your skill</label>
-                <input id='skill-select' type="text" autocomplete="off">
-                <input id='skill-val' type=hidden>
-                <div id='add-skill-buttons' class='button-box'>
-                    <span id='save-skill-button' class='button-confirm' ><a href="#" id='save-new-skill-link'>Save</a></span>
-                    <span>or</span>
-                    <span id='cancel-skill-button' class='button-cancel' ><a href="#" id='cancel-new-skill-link' >cancel</a></span>
-                </div>
-            </form>
-        </div>
     <div id='skill-container' class='items-container'>
         <div id='skills-label' class='items-container-label'>Skills: </div>
         <a id='add-skill-button' class='items-container-add-button'> + Add skill</a>
@@ -118,7 +94,31 @@
             <input text='Python' type='hidden' name='python'  class='skill'>
         </div>
     </div>
-    <span id='my-projects-container'><a id='my-projects' href="#">My projects</a></span>
+    <span id='my-projects-container' class='button-green'><a id='my-projects' href="#">My projects</a></span>
+    <div id='interest-input-popup' class='form-popup'>
+        <form action="" id='add-interest-form'>
+            <label for="interest-select">Enter your interest</label>
+            <input id='interest-select' type="text" autocomplete="off">
+            <input id='interest-val' type=hidden>
+            <div id='add-interest-buttons' class='button-box'>
+                <span id='save-interest-button' class='button-confirm button-green' ><a href="#" id='save-new-interest-link'>Save</a></span>
+                <span>or</span>
+                <span id='cancel-interest-button' class='button-cancel' ><a href="#" id='cancel-new-interest-link' >cancel</a></span>
+            </div>
+        </form>
+    </div>
+    <div id='skill-input-popup' class='form-popup'>
+        <form action="" id='add-skill-form'>
+            <label for="skill-select">Enter your skill</label>
+            <input id='skill-select' type="text" autocomplete="off">
+            <input id='skill-val' type=hidden>
+            <div id='add-skill-buttons' class='button-box'>
+                <span id='save-skill-button' class='button-confirm button-green' ><a href="#" id='save-new-skill-link'>Save</a></span>
+                <span>or</span>
+                <span id='cancel-skill-button' class='button-cancel' ><a href="#" id='cancel-new-skill-link' >cancel</a></span>
+            </div>
+        </form>
+    </div>
 </div>
 </body>
 </html>

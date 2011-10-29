@@ -113,13 +113,11 @@
 
 #my-projects-container{
     color: white;
-    background-color: #69A74E;
     display: block;
     margin: auto;
     width: 130px;
     height: 40px;
     clear:both;
-    border: 1px solid black;
     text-align: center;
 }
 

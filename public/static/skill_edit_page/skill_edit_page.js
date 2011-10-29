@@ -49,14 +49,18 @@
 
     $('#add-interest-form').submit(function(e) {
         e.preventDefault();
-        addInterestTag()
+        addInterestTag();
+    })
+    $('#add-skill-form').submit(function(e) {
+        e.preventDefault();
+        addNewSkill();
     })
     function addNewSkill() {
         var skill_name = $('#skill-val').val()
+        $.mask.close()
         if (skill_name)
             $('#skill-list').append($("<input type='hidden' class='skill'>").text($('#skill-select').val()).attr('name', skill_name))
-        initSkillLevelWidget($('input:hidden:last'), {value:1})
-        $.mask.close()
+        initSkillLevelWidget($('#skill-list input:hidden:last'), {value:1})
         $('#interest-val').val('')
     }
 
