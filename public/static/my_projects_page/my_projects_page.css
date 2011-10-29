@@ -93,7 +93,21 @@ ul{
     float:left;
 }
 
-.   view-all-teammates-span{
+.view-all-teammates-span{
     margin-top:20px;
     margin-left: 0px;
+}
+
+.new-project-span{
+    display: block;
+    vertical-align: middle;
+    border: 1px solid darkGreen;
+    background-color: #69A74E;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 24px;
+    margin-left: 7px;
+}
+.new-project-link{
+ color:white;
 }
